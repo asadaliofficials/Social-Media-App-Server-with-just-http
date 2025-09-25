@@ -1,5 +1,6 @@
+const { get } = require('http');
 const createAccount = require('../controllers/auth.controllers');
-const createNewPost = require('../controllers/post.controllers');
+const { newPostController, getAllPosts } = require('../controllers/post.controllers');
 
 function manageRoutes(req, res) {
 	const url = req.url;
@@ -12,10 +13,10 @@ function manageRoutes(req, res) {
 			createAccount(req, res);
 			break;
 		case '/create-post':
-			createNewPost(req, res);
+			newPostController(req, res);
 			break;
-		case '/':
-			res.end('wellcome to the home page!');
+		case '/posts':
+			getAllPosts(req, res);
 			break;
 
 		default:

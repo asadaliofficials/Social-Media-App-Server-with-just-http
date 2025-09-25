@@ -1,0 +1,34 @@
+[
+  {
+    "title": "post title",
+    "description": "post description",
+    "id": "234234543",
+    "views": 23423,
+    "likes": 343,
+    "userEmail": "test@gmail.com"
+  },
+  {
+    "title": "Post Title",
+    "description": "Post Description",
+    "views": 234,
+    "likes": 34,
+    "userEmail": "asadmail@gmail.com",
+    "id": 1
+  },
+  {
+    "title": "this is my first Post",
+    "description": "this is the description of my first post, thanks to read it.",
+    "views": 3432,
+    "likes": 454,
+    "userEmail": "asadmail@gmail.com",
+    "id": 679797
+  },
+  {
+    "title": "how to become a web dev",
+    "description": "just start today, becuase it is the best time for you",
+    "views": 24324423,
+    "likes": 32423,
+    "userEmail": "asadmail@gmail.com",
+    "id": 654530
+  }
+]
