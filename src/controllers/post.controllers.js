@@ -36,4 +36,24 @@ function getAllPosts(req, res) {
 	}
 }
 
-module.exports = { newPostController, getAllPosts };
+function getOnePost(req, res) {
+	const { id } = JSON.parse(req.body);
+	const filePath = path.join(__dirname, '../database/posts.json');
+	try {
+		// 1. Read the current users
+		const data = fs.readFileSync(filePath, 'utf8');
+		const posts = JSON.parse(data);
+		for (const post of posts) {
+			console.log(post.id + '===' + id);
+			if (post.id == id) {
+				return res.end(JSON.stringify(post));
+			}
+		}
+		return res.end('post not found!');
+	} catch (error) {
+		console.error('failed to get post:', error);
+		return res.end('failed to get post, try again later!');
+	}
+}
+
+module.exports = { newPostController, getAllPosts, getOnePost };

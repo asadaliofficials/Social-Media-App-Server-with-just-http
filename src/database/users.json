@@ -16,5 +16,11 @@
     "email": "asadmail@gmail.com",
     "password": "123123",
     "isadmin": true
+  },
+  {
+    "name": "asad",
+    "email": "newmail@gmail.com",
+    "password": "123123",
+    "isadmin": true
   }
 ]

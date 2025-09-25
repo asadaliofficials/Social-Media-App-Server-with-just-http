@@ -1,26 +1,29 @@
-const { get } = require('http');
+// routes.js
 const createAccount = require('../controllers/auth.controllers');
-const { newPostController, getAllPosts } = require('../controllers/post.controllers');
+const { newPostController, getAllPosts, getOnePost } = require('../controllers/post.controllers');
+const routes = {
+	GET: {
+		'/': (req, res) => res.end('Welcome to the home page!'),
+		'/posts': getAllPosts,
+	},
+	POST: {
+		'/post': getOnePost,
+		'/register': createAccount,
+		'/create-post': newPostController,
+	},
+};
 
 function manageRoutes(req, res) {
+	const method = req.method;
 	const url = req.url;
 
-	switch (url) {
-		case '/':
-			res.end('wellcome to the home page!');
-			break;
-		case '/register':
-			createAccount(req, res);
-			break;
-		case '/create-post':
-			newPostController(req, res);
-			break;
-		case '/posts':
-			getAllPosts(req, res);
-			break;
+	const handler = routes[method]?.[url];
 
-		default:
-			break;
+	if (handler) {
+		handler(req, res);
+	} else {
+		res.writeHead(404, { 'Content-Type': 'text/plain' });
+		res.end('Not found');
 	}
 }
 
