@@ -23,7 +23,17 @@ function newPostController(req, res) {
 }
 
 function getAllPosts(req, res) {
-	
+	const filePath = path.join(__dirname, '../database/posts.json');
+	try {
+		// 1. Read the current users
+		const data = fs.readFileSync(filePath, 'utf8');
+		const posts = JSON.parse(data);
+
+		return res.end(JSON.stringify(posts));
+	} catch (error) {
+		console.error('failed to get all posts:', error);
+		return res.end('failed to get all posts, try again later!');
+	}
 }
 
 module.exports = { newPostController, getAllPosts };
