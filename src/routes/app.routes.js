@@ -1,6 +1,11 @@
 // routes.js
 const createAccount = require('../controllers/auth.controllers');
-const { newPostController, getAllPosts, getOnePost } = require('../controllers/post.controllers');
+const {
+	newPostController,
+	getAllPosts,
+	getOnePost,
+	deletePost,
+} = require('../controllers/post.controllers');
 const routes = {
 	GET: {
 		'/': (req, res) => res.end('Welcome to the home page!'),
@@ -10,6 +15,7 @@ const routes = {
 		'/post': getOnePost,
 		'/register': createAccount,
 		'/create-post': newPostController,
+		'/delete-post': deletePost,
 	},
 };
 

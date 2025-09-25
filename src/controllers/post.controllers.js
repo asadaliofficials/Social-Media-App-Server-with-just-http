@@ -56,4 +56,21 @@ function getOnePost(req, res) {
 	}
 }
 
-module.exports = { newPostController, getAllPosts, getOnePost };
+function deletePost(req, res) {
+	const { id } = JSON.parse(req.body);
+	const filePath = path.join(__dirname, '../database/posts.json');
+	try {
+		// 1. Read the current users
+		const data = fs.readFileSync(filePath, 'utf8');
+		const posts = JSON.parse(data);
+		const newPosts = posts.filter(post => post.id != id);
+
+		fs.writeFileSync(filePath, JSON.stringify(newPosts, null, 2), 'utf8');
+		return res.end('post deleted successfully...❌');
+	} catch (error) {
+		console.error('failed to delete post:', error);
+		return res.end('failed to delete post, try again later!');
+	}
+}
+
+module.exports = { newPostController, getAllPosts, getOnePost, deletePost };
